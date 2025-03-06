@@ -5,16 +5,20 @@ on:
     - cron: "*/14 * * * *"  # Runs every 14 minutes
 
 jobs:
-  keep-alive:
+  keep_alive:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v3
-      
-      - name: Install Python
-        uses: actions/setup-python@v3
-        with:
-          python-version: "3.x"
-      
-      - name: Run script
-        run: python scheduler.py
+      - name: Run Python script
+        run: |
+          python3 -c "
+          import requests
+          urls = ['https://emai-webhook-python.onrender.com/send_email', 'https://user-scheduler-iy5j.onrender.com/mark_unavailable', 'https://voice-agent-zoho-webhook.onrender.com/retell']
+          for url in urls:
+              try:
+                  r = requests.get(url, timeout=10)
+                  print(f'Pinged {url}, Status Code:', r.status_code)
+              except Exception as e:
+                  print(f'Error pinging {url}:', e)
+          "
