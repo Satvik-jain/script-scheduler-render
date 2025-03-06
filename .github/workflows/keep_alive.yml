@@ -17,4 +17,4 @@ jobs:
           python-version: "3.x"
       
       - name: Run script
-        run: python keep_webhooks_alive.py
+        run: python scheduler.py
