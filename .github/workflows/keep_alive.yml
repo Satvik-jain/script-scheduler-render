@@ -5,20 +5,16 @@ on:
     - cron: "*/14 * * * *"  # Runs every 14 minutes
 
 jobs:
-  keep_alive:
+  keep-alive:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Run Python script
-        run: |
-          python3 -c "
-          import requests
-          urls = ['https://your-webhook-1.com', 'https://your-webhook-2.com', 'https://your-webhook-3.com']
-          for url in urls:
-              try:
-                  r = requests.get(url, timeout=10)
-                  print(f'Pinged {url}, Status Code:', r.status_code)
-              except Exception as e:
-                  print(f'Error pinging {url}:', e)
-          "
+      
+      - name: Install Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.x"
+      
+      - name: Run script
+        run: python keep_webhooks_alive.py
