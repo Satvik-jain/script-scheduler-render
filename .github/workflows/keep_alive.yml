@@ -2,7 +2,7 @@ name: Keep Webhooks Alive
 
 on:
   schedule:
-    - cron: "*/14 * * * *"  # Runs every 14 minutes
+    - cron: "*/10 * * * *"  # Runs every 10 minutes
 
 jobs:
   keep_alive:
@@ -14,7 +14,7 @@ jobs:
         run: |
           python3 -c "
           import requests
-          urls = ['https://emai-webhook-python.onrender.com/send_email', 'https://user-scheduler-iy5j.onrender.com/mark_unavailable', 'https://voice-agent-zoho-webhook.onrender.com/retell']
+          urls = ['https://api.render.com/deploy/srv-d1knitqdbo4c73a31dt0?key=WaW3SXFCkJo']
           for url in urls:
               try:
                   r = requests.get(url, timeout=10)
