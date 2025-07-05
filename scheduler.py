@@ -3,9 +3,7 @@ import requests
 
 def ping_webhooks():
     webhooks = [
-        "https://user-scheduler-iy5j.onrender.com/get_free_slots",
-        "https://emai-webhook-python.onrender.com/send_email",
-        "https://voice-agent-zoho-webhook.onrender.com/retell"
+        "https://api.render.com/deploy/srv-d1knitqdbo4c73a31dt0?key=WaW3SXFCkJo"
     ]
     
     for url in webhooks:
@@ -18,4 +16,4 @@ def ping_webhooks():
 if __name__ == "__main__":
     while True:
         ping_webhooks()
-        time.sleep(14 * 60)  # Sleep for 14 minutes
+        time.sleep(10* 60)  # Sleep for 14 minutes
